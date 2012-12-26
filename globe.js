@@ -186,6 +186,7 @@ DAT.Globe = function(container, colorFn) {
   addData = function(data, opts) {
     var lat, lng, size, color, i, step, colorFnWrapper;
 
+	opts = opts || {};
     opts.animated = opts.animated || false;
     this.is_animated = opts.animated;
     opts.format = opts.format || 'magnitude'; // other option is 'legend'
@@ -224,7 +225,7 @@ DAT.Globe = function(container, colorFn) {
       lat = data[i];
       lng = data[i + 1];
       color = colorFnWrapper(data,i);
-      size = data[i + 2]; // CHANGED
+      size = 0; // data[i + 2]; // CHANGED
       size = size*200;
       addPoint(lat, lng, size, color, subgeo);
     }
