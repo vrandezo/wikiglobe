@@ -102,9 +102,9 @@
   </div>
 
   <div id="title">
-    World of Wikipedia
+    Wikipedia globe
   </div>
-
+  
   <script type="text/javascript" src="third-party/Three/ThreeWebGL.js"></script>
   <script type="text/javascript" src="third-party/Three/ThreeExtras.js"></script>
   <script type="text/javascript" src="third-party/Three/RequestAnimationFrame.js"></script>
@@ -148,7 +148,7 @@
 
 
       xhr = new XMLHttpRequest();
-      xhr.open('GET', 'population909500.json', true);
+      xhr.open('GET', 'data/geodata.json', true);
       xhr.onreadystatechange = function(e) {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {

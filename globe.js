@@ -17,7 +17,11 @@ DAT.Globe = function(container, colorFn) {
 
   colorFn = colorFn || function(x) {
     var c = new THREE.Color();
-    c.setHSV( ( 0.6 - ( x * 0.5 ) ), 1.0, 1.0 );
+    if (x==0.0) {
+    	c.setHSV( ( 0.6 - ( x * 0.5 ) ), 0, 0 );
+    } else {
+    	c.setHSV( ( 0.6 - ( x * 0.5 ) ), 1.0, 1.0 );
+    }
     return c;
   };
 
@@ -205,7 +209,7 @@ DAT.Globe = function(container, colorFn) {
 //        size = data[i + 2];
           color = colorFnWrapper(data,i);
           size = 0;
-          addPoint(lat, lng, size, color, this._baseGeometry);
+          addPoint(lat, lng, 0, color, this._baseGeometry);
         }
       }
       if(this._morphTargetId === undefined) {
@@ -220,7 +224,7 @@ DAT.Globe = function(container, colorFn) {
       lat = data[i];
       lng = data[i + 1];
       color = colorFnWrapper(data,i);
-      size = data[i + 2];
+      size = data[i + 2]; // CHANGED
       size = size*200;
       addPoint(lat, lng, size, color, subgeo);
     }
@@ -272,7 +276,7 @@ DAT.Globe = function(container, colorFn) {
 
     point.scale.z = -size;
     point.updateMatrix();
-
+	point.color = color;
     var i;
     for (i = 0; i < point.geometry.faces.length; i++) {
 
