@@ -184,84 +184,28 @@ DAT.Globe = function(container, colorFn) {
   }
 
   addData = function(data, opts) {
-    var lat, lng, size, color, i, step, colorFnWrapper;
+    var lat, lng, size, color, i;
 
-	opts = opts || {};
-    opts.animated = opts.animated || false;
-    this.is_animated = opts.animated;
-    opts.format = opts.format || 'magnitude'; // other option is 'legend'
-    console.log(opts.format);
-    if (opts.format === 'magnitude') {
-      step = 3;
-      colorFnWrapper = function(data, i) { return colorFn(data[i+2]); }
-    } else if (opts.format === 'legend') {
-      step = 4;
-      colorFnWrapper = function(data, i) { return colorFn(data[i+3]); }
-    } else {
-      throw('error: format not supported: '+opts.format);
-    }
-
-    if (opts.animated) {
-      if (this._baseGeometry === undefined) {
-        this._baseGeometry = new THREE.Geometry();
-        for (i = 0; i < data.length; i += step) {
-          lat = data[i];
-          lng = data[i + 1];
-//        size = data[i + 2];
-          color = colorFnWrapper(data,i);
-          size = 0;
-          addPoint(lat, lng, 0, color, this._baseGeometry);
-        }
-      }
-      if(this._morphTargetId === undefined) {
-        this._morphTargetId = 0;
-      } else {
-        this._morphTargetId += 1;
-      }
-      opts.name = opts.name || 'morphTarget'+this._morphTargetId;
-    }
     var subgeo = new THREE.Geometry();
-    for (i = 0; i < data.length; i += step) {
+    for (i = 0; i < data.length; i += 3) {
       lat = data[i];
       lng = data[i + 1];
-      color = colorFnWrapper(data,i);
+      color = colorFn(data[i+2]);
       size = 0; // data[i + 2]; // CHANGED
-      size = size*200;
       addPoint(lat, lng, size, color, subgeo);
     }
-    if (opts.animated) {
-      this._baseGeometry.morphTargets.push({'name': opts.name, vertices: subgeo.vertices});
-    } else {
-      this._baseGeometry = subgeo;
-    }
+    this._baseGeometry = subgeo;
 
   };
 
   function createPoints() {
     if (this._baseGeometry !== undefined) {
-      if (this.is_animated === false) {
-        this.points = new THREE.Mesh(this._baseGeometry, new THREE.MeshBasicMaterial({
+      var points = new THREE.Mesh(this._baseGeometry, new THREE.MeshBasicMaterial({
               color: 0xffffff,
               vertexColors: THREE.FaceColors,
               morphTargets: false
-            }));
-      } else {
-        if (this._baseGeometry.morphTargets.length < 8) {
-          console.log('t l',this._baseGeometry.morphTargets.length);
-          var padding = 8-this._baseGeometry.morphTargets.length;
-          console.log('padding', padding);
-          for(var i=0; i<=padding; i++) {
-            console.log('padding',i);
-            this._baseGeometry.morphTargets.push({'name': 'morphPadding'+i, vertices: this._baseGeometry.vertices});
-          }
-        }
-        this.points = new THREE.Mesh(this._baseGeometry, new THREE.MeshBasicMaterial({
-              color: 0xffffff,
-              vertexColors: THREE.FaceColors,
-              morphTargets: true
-            }));
-      }
-      scene.addObject(this.points);
+      }));
+      scene.addObject(points);
     }
   }
 
@@ -277,7 +221,6 @@ DAT.Globe = function(container, colorFn) {
 
     point.scale.z = -size;
     point.updateMatrix();
-	point.color = color;
     var i;
     for (i = 0; i < point.geometry.faces.length; i++) {
 
@@ -389,40 +332,22 @@ DAT.Globe = function(container, colorFn) {
 
   init();
   this.animate = animate;
-
-
-  this.__defineGetter__('time', function() {
-    return this._time || 0;
-  });
-
-  this.__defineSetter__('time', function(t) {
-    var validMorphs = [];
-    var morphDict = this.points.morphTargetDictionary;
-    for(var k in morphDict) {
-      if(k.indexOf('morphPadding') < 0) {
-        validMorphs.push(morphDict[k]);
-      }
-    }
-    validMorphs.sort();
-    var l = validMorphs.length-1;
-    var scaledt = t*l+1;
-    var index = Math.floor(scaledt);
-    for (i=0;i<validMorphs.length;i++) {
-      this.points.morphTargetInfluences[validMorphs[i]] = 0;
-    }
-    var lastIndex = index - 1;
-    var leftover = scaledt - index;
-    if (lastIndex >= 0) {
-      this.points.morphTargetInfluences[lastIndex] = 1 - leftover;
-    }
-    this.points.morphTargetInfluences[index] = leftover;
-    this._time = t;
-  });
-
   this.addData = addData;
   this.createPoints = createPoints;
   this.renderer = renderer;
   this.scene = scene;
+  
+  this.clearData = function() {
+  	// I am pretty sure I am doing it wrong, but there is no documentation I can
+  	// find on the Web, and it is quarter past two in the night, so I will go with
+  	// "this seems superficially to work enough for a throwaway website"
+  	if (this.scene.__webglObjects)
+	  	while (this.scene.__webglObjects.length > 1)
+  			this.scene.__webglObjects.pop();
+  	if (this.scene.children)
+  		while (this.scene.children.length > 1)
+  			this.scene.removeChild(this.scene.children[this.scene.children.length-1]);
+  };
 
   return this;
 

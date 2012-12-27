@@ -65,7 +65,52 @@
   </div>
 
   <div id="title">
-    Wikipedia globe
+    <span style="font-size:200%">Wikipedia globe</span>
+    <br>
+    &nbsp;
+    <br>
+    <table>
+     <tr>
+      <td>
+       <span onclick="loadData('en',1)">English</span>
+      </td>
+      <td>
+        <span onclick="loadData('en',1)" class="bull">&bull;</span>
+        <span onclick="loadData('en',2)" class="bull">&bull;</span>
+        <span onclick="loadData('en',3)" class="bull">&bull;</span>
+        <span onclick="loadData('en',4)" class="bull">&bull;</span>
+        <span onclick="loadData('en',5)" class="bull">&bull;</span>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <span onclick="loadData('fr',1)">French</span>
+      </td>
+      <td>
+        <span onclick="loadData('fr',1)" class="bull">&bull;</span>
+        <span onclick="loadData('fr',2)" class="bull">&bull;</span>
+        <span onclick="loadData('fr',3)" class="bull">&bull;</span>
+        <span onclick="loadData('fr',4)" class="bull">&bull;</span>
+        <span onclick="loadData('fr',5)" class="bull">&bull;</span>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <span onclick="loadData('ca',1)">Catalan</span>
+      </td>
+      <td>
+        <span onclick="loadData('ca',1)" class="bull">&bull;</span>
+        <span onclick="loadData('ca',2)" class="bull">&bull;</span>
+        <span onclick="loadData('ca',3)" class="bull">&bull;</span>
+        <span onclick="loadData('ca',4)" class="bull">&bull;</span>
+        <span onclick="loadData('ca',5)" class="bull">&bull;</span>
+      </td>
+     </tr>
+    </table>
+    <br>
+    &nbsp;
+    <br>
+    <span id="load"> </span>
   </div>
   
   <script type="text/javascript" src="third-party/Three/ThreeWebGL.js"></script>
@@ -75,30 +120,38 @@
   <script type="text/javascript" src="globe.js"></script>
   <script type="text/javascript">
 
-    if(!Detector.webgl){
-      Detector.addGetWebGLMessage();
-    } else {
+if(!Detector.webgl){
+	Detector.addGetWebGLMessage();
+} else {
+	var container = document.getElementById('container');
+	var globe = new DAT.Globe(container);
 
-      var container = document.getElementById('container');
-      var globe = new DAT.Globe(container);
+	var loadData = function(lang, res) {
+		document.getElementById('load').innerHTML = 'Loading...';
+		var xhr;
 
-      var xhr;
-
-      xhr = new XMLHttpRequest();
-      xhr.open('GET', 'data/geodata.json', true);
-      xhr.onreadystatechange = function(e) {
-        if (xhr.readyState === 4) {
-          if (xhr.status === 200) {
-            var data = JSON.parse(xhr.responseText);
-            window.data = data;
-            globe.addData(data);
-            globe.createPoints();
-            globe.animate();
-          }
-        }
-      };
-      xhr.send(null);
-    }
+		xhr = new XMLHttpRequest();
+		xhr.open('GET', 'data/data-' +lang + res + '.json', true);
+		
+		xhr.onreadystatechange = function(e) {
+			if (xhr.readyState === 4) {
+				if (xhr.status === 200) {
+					var data = [];
+					data = JSON.parse(xhr.responseText);
+					window.data = data;
+					globe.clearData();
+					globe.addData(data);
+					globe.createPoints();
+					globe.animate();
+					document.getElementById('load').innerHTML = ' ';
+				}
+			}
+		};
+		xhr.send(null);
+	};
+	
+	loadData('en', 1);
+}
 
   </script>
 
