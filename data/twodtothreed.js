@@ -1,6 +1,6 @@
 // transform the JSON files from the 2d to the 3d format
-var lang = 'ca';
-var rounding = 10;
+var lang = 'el';
+var rounding = 5;
 console.log('processing ' + lang + ' ' + rounding);
 
 var temp = {};

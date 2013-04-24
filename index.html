@@ -41,6 +41,9 @@
         padding: 0 5px;
         color: #555;
       }
+      .bull:hover {
+        color: #fff;
+      }
 
       #title {
         position: absolute;
@@ -82,11 +85,11 @@
        <span onclick="loadData('en',1)">English</span>
       </td>
       <td>
-        <span onclick="loadData('en',1)" class="bull">&bull;</span>
-        <span onclick="loadData('en',2)" class="bull">&bull;</span>
-        <span onclick="loadData('en',3)" class="bull">&bull;</span>
-        <span onclick="loadData('en',4)" class="bull">&bull;</span>
-        <span onclick="loadData('en',5)" class="bull">&bull;</span>
+        <span onclick="loadData('en',1)" id="en1" class="bull">&bull;</span>
+        <span onclick="loadData('en',2)" id="en2" class="bull">&bull;</span>
+        <span onclick="loadData('en',3)" id="en3" class="bull">&bull;</span>
+        <span onclick="loadData('en',4)" id="en4" class="bull">&bull;</span>
+        <span onclick="loadData('en',5)" id="en5" class="bull">&bull;</span>
       </td>
      </tr>
      <tr>
@@ -94,11 +97,11 @@
        <span onclick="loadData('fr',1)">French</span>
       </td>
       <td>
-        <span onclick="loadData('fr',1)" class="bull">&bull;</span>
-        <span onclick="loadData('fr',2)" class="bull">&bull;</span>
-        <span onclick="loadData('fr',3)" class="bull">&bull;</span>
-        <span onclick="loadData('fr',4)" class="bull">&bull;</span>
-        <span onclick="loadData('fr',5)" class="bull">&bull;</span>
+        <span onclick="loadData('fr',1)" id="fr1" class="bull">&bull;</span>
+        <span onclick="loadData('fr',2)" id="fr2" class="bull">&bull;</span>
+        <span onclick="loadData('fr',3)" id="fr3" class="bull">&bull;</span>
+        <span onclick="loadData('fr',4)" id="fr4" class="bull">&bull;</span>
+        <span onclick="loadData('fr',5)" id="fr5" class="bull">&bull;</span>
       </td>
      </tr>
      <tr>
@@ -106,11 +109,11 @@
        <span onclick="loadData('ca',1)">Catalan</span>
       </td>
       <td>
-        <span onclick="loadData('ca',1)" class="bull">&bull;</span>
-        <span onclick="loadData('ca',2)" class="bull">&bull;</span>
-        <span onclick="loadData('ca',3)" class="bull">&bull;</span>
-        <span onclick="loadData('ca',4)" class="bull">&bull;</span>
-        <span onclick="loadData('ca',5)" class="bull">&bull;</span>
+        <span onclick="loadData('ca',1)" id="ca1" class="bull">&bull;</span>
+        <span onclick="loadData('ca',2)" id="ca2" class="bull">&bull;</span>
+        <span onclick="loadData('ca',3)" id="ca3" class="bull">&bull;</span>
+        <span onclick="loadData('ca',4)" id="ca4" class="bull">&bull;</span>
+        <span onclick="loadData('ca',5)" id="ca5" class="bull">&bull;</span>
       </td>
      </tr>
      <tr>
@@ -118,11 +121,11 @@
        <span onclick="loadData('it',1)">Italian</span>
       </td>
       <td>
-        <span onclick="loadData('it',1)" class="bull">&bull;</span>
-        <span onclick="loadData('it',2)" class="bull">&bull;</span>
-        <span onclick="loadData('it',3)" class="bull">&bull;</span>
-        <span onclick="loadData('it',4)" class="bull">&bull;</span>
-        <span onclick="loadData('it',5)" class="bull">&bull;</span>
+        <span onclick="loadData('it',1)" id="it1" class="bull">&bull;</span>
+        <span onclick="loadData('it',2)" id="it2" class="bull">&bull;</span>
+        <span onclick="loadData('it',3)" id="it3" class="bull">&bull;</span>
+        <span onclick="loadData('it',4)" id="it4" class="bull">&bull;</span>
+        <span onclick="loadData('it',5)" id="it5" class="bull">&bull;</span>
       </td>
      </tr>
      <tr>
@@ -130,11 +133,11 @@
        <span onclick="loadData('el',1)">Greek</span>
       </td>
       <td>
-        <span onclick="loadData('el',1)" class="bull">&bull;</span>
-        <span onclick="loadData('el',2)" class="bull">&bull;</span>
-        <span onclick="loadData('el',3)" class="bull">&bull;</span>
-        <span onclick="loadData('el',4)" class="bull">&bull;</span>
-        <span onclick="loadData('el',5)" class="bull">&bull;</span>
+        <span onclick="loadData('el',1)" id="el1" class="bull">&bull;</span>
+        <span onclick="loadData('el',2)" id="el2" class="bull">&bull;</span>
+        <span onclick="loadData('el',3)" id="el3" class="bull">&bull;</span>
+        <span onclick="loadData('el',4)" id="el4" class="bull">&bull;</span>
+        <span onclick="loadData('el',5)" id="el5" class="bull">&bull;</span>
       </td>
      </tr>
      <tr>
@@ -142,11 +145,11 @@
        <span onclick="loadData('ru',1)">Russian</span>
       </td>
       <td>
-        <span onclick="loadData('ru',1)" class="bull">&bull;</span>
-        <span onclick="loadData('ru',2)" class="bull">&bull;</span>
-        <span onclick="loadData('ru',3)" class="bull">&bull;</span>
-        <span onclick="loadData('ru',4)" class="bull">&bull;</span>
-        <span onclick="loadData('ru',5)" class="bull">&bull;</span>
+        <span onclick="loadData('ru',1)" id="ru1" class="bull">&bull;</span>
+        <span onclick="loadData('ru',2)" id="ru2" class="bull">&bull;</span>
+        <span onclick="loadData('ru',3)" id="ru3" class="bull">&bull;</span>
+        <span onclick="loadData('ru',4)" id="ru4" class="bull">&bull;</span>
+        <span onclick="loadData('ru',5)" id="ru5" class="bull">&bull;</span>
       </td>
      </tr>
      <tr>
@@ -154,11 +157,11 @@
        <span onclick="loadData('zh',1)">Chinese</span>
       </td>
       <td>
-        <span onclick="loadData('zh',1)" class="bull">&bull;</span>
-        <span onclick="loadData('zh',2)" class="bull">&bull;</span>
-        <span onclick="loadData('zh',3)" class="bull">&bull;</span>
-        <span onclick="loadData('zh',4)" class="bull">&bull;</span>
-        <span onclick="loadData('zh',5)" class="bull">&bull;</span>
+        <span onclick="loadData('zh',1)" id="zh1" class="bull">&bull;</span>
+        <span onclick="loadData('zh',2)" id="zh2" class="bull">&bull;</span>
+        <span onclick="loadData('zh',3)" id="zh3" class="bull">&bull;</span>
+        <span onclick="loadData('zh',4)" id="zh4" class="bull">&bull;</span>
+        <span onclick="loadData('zh',5)" id="zh5" class="bull">&bull;</span>
       </td>
      </tr>
      <tr>
@@ -166,11 +169,11 @@
        <span onclick="loadData('he',1)">Hebrew</span>
       </td>
       <td>
-        <span onclick="loadData('he',1)" class="bull">&bull;</span>
-        <span onclick="loadData('he',2)" class="bull">&bull;</span>
-        <span onclick="loadData('he',3)" class="bull">&bull;</span>
-        <span onclick="loadData('he',4)" class="bull">&bull;</span>
-        <span onclick="loadData('he',5)" class="bull">&bull;</span>
+        <span onclick="loadData('he',1)" id="he1" class="bull">&bull;</span>
+        <span onclick="loadData('he',2)" id="he2" class="bull">&bull;</span>
+        <span onclick="loadData('he',3)" id="he3" class="bull">&bull;</span>
+        <span onclick="loadData('he',4)" id="he4" class="bull">&bull;</span>
+        <span onclick="loadData('he',5)" id="he5" class="bull">&bull;</span>
       </td>
      </tr>
      <tr>
@@ -178,11 +181,11 @@
        <span onclick="loadData('ko',1)">Korean</span>
       </td>
       <td>
-        <span onclick="loadData('ko',1)" class="bull">&bull;</span>
-        <span onclick="loadData('ko',2)" class="bull">&bull;</span>
-        <span onclick="loadData('ko',3)" class="bull">&bull;</span>
-        <span onclick="loadData('ko',4)" class="bull">&bull;</span>
-        <span onclick="loadData('ko',5)" class="bull">&bull;</span>
+        <span onclick="loadData('ko',1)" id="ko1" class="bull">&bull;</span>
+        <span onclick="loadData('ko',2)" id="ko2" class="bull">&bull;</span>
+        <span onclick="loadData('ko',3)" id="ko3" class="bull">&bull;</span>
+        <span onclick="loadData('ko',4)" id="ko4" class="bull">&bull;</span>
+        <span onclick="loadData('ko',5)" id="ko5" class="bull">&bull;</span>
       </td>
      </tr>
     </table>
@@ -204,8 +207,14 @@ if(!Detector.webgl){
 } else {
 	var container = document.getElementById('container');
 	var globe = new DAT.Globe(container);
+	var currentLang = 'en';
+	var currentRes = 1;
 
 	var loadData = function(lang, res) {
+		document.getElementById(currentLang + currentRes).style.color = '#555';
+		currentLang = lang;
+		currentRes = res;
+		document.getElementById(currentLang + currentRes).style.color = '#fff';
 		document.getElementById('load').innerHTML = 'Loading...';
 		var xhr;
 
